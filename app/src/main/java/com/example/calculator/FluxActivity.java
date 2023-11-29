@@ -1,4 +1,16 @@
 package com.example.calculator;
 
-public class FluxActivity {
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class FluxActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_flux);
+
+    }
+
 }

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FluxButton = findViewById(R.id.calculatorLauncher);
+        FluxButton = findViewById(R.id.fluxLauncher);
 
         FluxButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View _view) {

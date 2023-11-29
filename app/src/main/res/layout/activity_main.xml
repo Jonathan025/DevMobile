@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="152dp"
             android:layout_marginTop="200dp"
-            android:text="Flux RSS"
+            android:text="@string/flux_rss"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />

@@ -17,4 +17,5 @@
     <string name="divide">/</string>
     <string name="delete"><![CDATA[<--]]></string>
     <string name="equal">=</string>
+    <string name="flux_rss">Flux RSS</string>
 </resources>

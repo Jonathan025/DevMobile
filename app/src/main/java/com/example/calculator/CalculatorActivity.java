@@ -29,44 +29,9 @@ public class CalculatorActivity extends AppCompatActivity {
 
     private TextView _screen;
     private StringBuilder _stringOnScreen = new StringBuilder();
-    private boolean _resultIsPresent = false;
+    private final CalculatorModel calculator = new CalculatorModel();
 
 
-    private int getOperatorIndex(StringBuilder stringOnScreen) {
-        for (int i=0; i<stringOnScreen.length(); i++) {
-            char currentChar = stringOnScreen.charAt(i);
-            if (!Character.isDigit(currentChar)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private void calculResult() {
-        int operatorIndex = getOperatorIndex(_stringOnScreen);
-        char operator = _stringOnScreen.charAt(operatorIndex);
-        int firstTerm = Integer.parseInt((_stringOnScreen.substring(0, operatorIndex)));
-        int secondTerm = Integer.parseInt((_stringOnScreen.substring(operatorIndex+1)));
-        int result = 0;
-        switch (operator) {
-            case '+' :
-                result = firstTerm + secondTerm;
-                break;
-            case '-' :
-                result = firstTerm - secondTerm;
-                break;
-            case 'x' :
-                result = firstTerm * secondTerm;
-                break;
-            case '/' :
-                result = firstTerm / secondTerm;
-                break;
-        }
-        _stringOnScreen.setLength(0);
-        _stringOnScreen.append(result);
-        _screen.setText(_stringOnScreen);
-        _resultIsPresent = true;
-    }
 
     private void linkButtons() {
         button1 = findViewById(R.id.button1);
@@ -88,42 +53,14 @@ public class CalculatorActivity extends AppCompatActivity {
         _screen = findViewById(R.id.screenText);
     }
 
-    private void actionOfDigitButton(String digit) {
-        if (_resultIsPresent) {
-            _stringOnScreen.setLength(0);
-            _resultIsPresent = false;
-        }
-        _stringOnScreen.append(digit);
-        _screen.setText(_stringOnScreen.toString());
-    }
-
-    private void clickOnDigit(Button button, String digit) {
+    private void clickOnCharacter(Button button, String character) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionOfDigitButton(digit);
-            }
-        });
-    }
-
-    private void clickOnOperator(Button button, String operator) {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (_resultIsPresent) {
-                    _resultIsPresent = false;
-                }
-                _stringOnScreen.append(operator);
+                _stringOnScreen = calculator.addCharacter(_stringOnScreen, character);
                 _screen.setText(_stringOnScreen.toString());
             }
         });
-    }
-
-    private void actionOfDelButton() {
-        if (_stringOnScreen.length() > 0) {
-            _stringOnScreen = _stringOnScreen.deleteCharAt(_stringOnScreen.length() - 1);
-            _screen.setText(_stringOnScreen.toString());
-        }
     }
 
     @SuppressLint("MissingInflatedId")
@@ -135,33 +72,35 @@ public class CalculatorActivity extends AppCompatActivity {
 
         linkButtons();
 
-        clickOnDigit(button0, "0");
-        clickOnDigit(button1, "1");
-        clickOnDigit(button2, "2");
-        clickOnDigit(button3, "3");
-        clickOnDigit(button4, "4");
-        clickOnDigit(button5, "5");
-        clickOnDigit(button6, "6");
-        clickOnDigit(button7, "7");
-        clickOnDigit(button8, "8");
-        clickOnDigit(button9, "9");
+        clickOnCharacter(button0, "0");
+        clickOnCharacter(button1, "1");
+        clickOnCharacter(button2, "2");
+        clickOnCharacter(button3, "3");
+        clickOnCharacter(button4, "4");
+        clickOnCharacter(button5, "5");
+        clickOnCharacter(button6, "6");
+        clickOnCharacter(button7, "7");
+        clickOnCharacter(button8, "8");
+        clickOnCharacter(button9, "9");
 
-        clickOnOperator(buttonPlus, "+");
-        clickOnOperator(buttonMinus, "-");
-        clickOnOperator(buttonMult, "x");
-        clickOnOperator(buttonDiv, "/");
+        clickOnCharacter(buttonPlus, "+");
+        clickOnCharacter(buttonMinus, "-");
+        clickOnCharacter(buttonMult, "*");
+        clickOnCharacter(buttonDiv, "/");
 
         buttonDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionOfDelButton();
+                _stringOnScreen = calculator.actionOfDelButton(_stringOnScreen);
+                _screen.setText(_stringOnScreen.toString());
             }
         });
 
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculResult();
+                _stringOnScreen = calculator.calculResult(_stringOnScreen);
+                _screen.setText(_stringOnScreen.toString());
             }
         });
 
