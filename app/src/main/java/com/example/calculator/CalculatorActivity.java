@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 public class CalculatorActivity extends AppCompatActivity {
 
+    private Button HomeButton;
+    private Button FluxButton;
     private Button button1;
     private Button button2;
     private Button button3;
@@ -32,8 +35,9 @@ public class CalculatorActivity extends AppCompatActivity {
     private final CalculatorModel calculator = new CalculatorModel();
 
 
-
     private void linkButtons() {
+        HomeButton = findViewById(R.id.mainLauncher);
+        FluxButton = findViewById(R.id.fluxLauncher);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
@@ -63,14 +67,56 @@ public class CalculatorActivity extends AppCompatActivity {
         });
     }
 
+    private void clickOnDelButton() {
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _stringOnScreen = calculator.actionOfDelButton(_stringOnScreen);
+                _screen.setText(_stringOnScreen.toString());
+            }
+        });
+    }
+
+    private void clickOnEqualButton() {
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _stringOnScreen = calculator.calculResult(_stringOnScreen);
+                _screen.setText(_stringOnScreen.toString());
+            }
+        });
+    }
+
+    private void clickOnHomeButton() {
+        HomeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View _view) {
+                Intent i = new Intent(com.example.calculator.CalculatorActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    private void clickOnFluxButton() {
+        FluxButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View _view) {
+                Intent i = new Intent(com.example.calculator.CalculatorActivity.this, FluxActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+
         linkButtons();
+
+
+        clickOnHomeButton();
+        clickOnFluxButton();
 
         clickOnCharacter(button0, "0");
         clickOnCharacter(button1, "1");
@@ -88,21 +134,7 @@ public class CalculatorActivity extends AppCompatActivity {
         clickOnCharacter(buttonMult, "*");
         clickOnCharacter(buttonDiv, "/");
 
-        buttonDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                _stringOnScreen = calculator.actionOfDelButton(_stringOnScreen);
-                _screen.setText(_stringOnScreen.toString());
-            }
-        });
-
-        buttonEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                _stringOnScreen = calculator.calculResult(_stringOnScreen);
-                _screen.setText(_stringOnScreen.toString());
-            }
-        });
-
+        clickOnDelButton();
+        clickOnEqualButton();
     }
 }

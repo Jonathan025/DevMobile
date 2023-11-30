@@ -1,8 +1,3 @@
-Ce tp met en oeuvre une calculatrice très simpliste afin d'introduire à la programmation android.
-
-La calculatrice n'est pas capable de prendre plus d'un opérateur à la fois.
-Par exemple 5+5 est possible mais pas 5+5+5
-Néanmoins il est possible de faire 5+5 puis rajouter 5 à ce résultat.
 
 Les graphismes sont très minimalistes et les fonctionnalités limités afin de ne pas se perdre dans ce premier tp.
 
@@ -10,7 +5,14 @@ Les graphismes sont très minimalistes et les fonctionnalités limités afin de 
 J'ai découvert les layouts concernant la gravité. En effet, j'ai eu des problèmes pour faire descendre les boutons afin de rendre le programme plus ergonomique.
 Le layout gravité a permis de tous les faire descendre et ainsi régler mon problème.
 
+On aurait pu utiliser des StringBuffer pour les variables _title, _description et _date, mais comme il n'y a pas l'utilisation de thread dans le tp, l'utilisation de StringBuilder est préféré pour sa performance.
 
+Dans MyRSSsaxHandler nous avons ceci : private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
+Nous avons étendu la classe AsyncTask car elle permet d'effectuer de longues opérations sans bloquer l'interface utilisateur. Ici c'est pour télécharger une image.
+Jérôme m'a aidé à faire et comprendre ce bout de code.
+
+L'application n'est pas faite pour des écrans trop grans. Typiquement les tablettes. En effet les boutons ne s'adapteront pas, nous pourrions y remédier si besoin dans une seconde version de l'application.
+Pour régler ce problème, nous pourrions utiliser un table Layout.
 
 
 Critique : 

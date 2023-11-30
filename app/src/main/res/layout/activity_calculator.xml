@@ -8,6 +8,26 @@
 >
 
     <Button
+            android:id="@+id/mainLauncher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/home"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"/>
+    <Button
+            android:id="@+id/fluxLauncher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/flux_rss"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,15 +133,15 @@
             android:layout_height="wrap_content"
             android:text="@string/divide"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="307dp" app:layout_constraintBottom_toTopOf="@+id/buttonEqual"
-            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonEqual"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"/>
     <Button
             android:id="@+id/buttonEqual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/equal"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,8 +152,8 @@
             android:layout_height="wrap_content"
             android:text="@string/x"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="307dp" app:layout_constraintBottom_toTopOf="@+id/buttonDiv"
-            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonDiv"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"/>
     <Button
             android:id="@+id/buttonDel"
@@ -141,8 +161,8 @@
             android:layout_height="wrap_content"
             android:text="@string/delete"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="307dp" app:layout_constraintBottom_toTopOf="@+id/buttonMult"
-            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonMult"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
